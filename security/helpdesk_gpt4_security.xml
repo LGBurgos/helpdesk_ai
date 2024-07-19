@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!-- Grupo para usuarios con acceso a consultas -->
+        <record id="group_helpdesk_gpt4_user" model="res.groups">
+            <field name="name">Helpdesk GPT-4 User</field>
+            <field name="category_id" ref="base.module_category_helpdesk"/>
+        </record>
+
+        <!-- Grupo para usuarios administradores -->
+        <record id="group_helpdesk_gpt4_admin" model="res.groups">
+            <field name="name">Helpdesk GPT-4 Administrator</field>
+            <field name="category_id" ref="base.module_category_helpdesk"/>
+            <field name="implied_ids" eval="[(4, ref('group_helpdesk_gpt4_user'))]"/>
+        </record>
+    </data>
+</odoo>

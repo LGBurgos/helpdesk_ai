@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_helpdesk_gpt4_query_form" model="ir.ui.view">
+        <field name="name">helpdesk.gpt4.query.form</field>
+        <field name="model">helpdesk.gpt4.query</field>
+        <field name="arch" type="xml">
+            <form string="GPT-4 Query">
+                <group>
+                    <field name="question"/>
+                    <button name="button_fetch_gpt4_response" type="object" string="Fetch Response" class="btn-primary"/>
+                    <field name="answer"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="helpdesk_gpt4_query_menu" name="GPT-4 Query" parent="helpdesk.helpdesk_menu_root" groups="helpdesk_gpt4.group_helpdesk_gpt4_user"/>
+
+    <act_window id="helpdesk_gpt4_query_action"
+                name="GPT-4 Query"
+                res_model="helpdesk.gpt4.query"
+                view_mode="form"
+                target="new"
+                groups="helpdesk_gpt4.group_helpdesk_gpt4_user"/>
+    
+    <menuitem id="helpdesk_gpt4_query_action_menu" name="GPT-4 Query" parent="helpdesk_gpt4_query_menu" action="helpdesk_gpt4_query_action" groups="helpdesk_gpt4.group_helpdesk_gpt4_user"/>
+</odoo>
+

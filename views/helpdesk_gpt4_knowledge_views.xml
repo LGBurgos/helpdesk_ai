@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_helpdesk_gpt4_knowledge_tree" model="ir.ui.view">
+        <field name="name">helpdesk.gpt4.knowledge.tree</field>
+        <field name="model">helpdesk.gpt4.knowledge</field>
+        <field name="arch" type="xml">
+            <tree string="GPT-4 Knowledge Base Entries">
+                <field name="question"/>
+                <field name="answer"/>
+                <field name="state"/>
+                <field name="modified"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_gpt4_knowledge_form" model="ir.ui.view">
+        <field name="name">helpdesk.gpt4.knowledge.form</field>
+        <field name="model">helpdesk.gpt4.knowledge</field>
+        <field name="arch" type="xml">
+            <form string="GPT-4 Knowledge Base Entry">
+                <group>
+                    <field name="question"/>
+                    <field name="answer"/>
+                    <field name="state"/>
+                    <field name="modified"/>
+                </group>
+                <footer>
+                    <button name="action_enter" type="object" string="Enter" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-secondary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft" class="btn-secondary" attrs="{'invisible': [('state', '!=', 'cancelled')]}"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="helpdesk_gpt4_knowledge_menu" name="GPT-4 Knowledge Base" parent="helpdesk.helpdesk_menu_root" groups="helpdesk_gpt4.group_helpdesk_gpt4_admin"/>
+
+    <act_window id="helpdesk_gpt4_knowledge_action"
+                name="GPT-4 Knowledge Base"
+                res_model="helpdesk.gpt4.knowledge"
+                view_mode="tree,form"
+                groups="helpdesk_gpt4.group_helpdesk_gpt4_admin"/>
+    
+    <menuitem id="helpdesk_gpt4_knowledge_action_menu" name="GPT-4 Knowledge Base" parent="helpdesk_gpt4_knowledge_menu" action="helpdesk_gpt4_knowledge_action" groups="helpdesk_gpt4.group_helpdesk_gpt4_admin"/>
+</odoo>
+
